@@ -1,12 +1,16 @@
 import express from "express";
-import { fetchTasks, createTasks, deleteTasks } from "./task";
-
 import serverless from "serverless-http";
+import cors from "cors";
+import { fetchTasks, createTasks, deleteTasks } from "./task";
 
 const app = express();
 const port = 3001;
 
 app.use(express.json());
+
+if (process.env.DEVELOPMENT) {
+  app.use(cors());
+}
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
