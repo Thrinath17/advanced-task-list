@@ -62,7 +62,7 @@ export const updateTasks = async ({ id, name, completed }) => {
 };
 
 export const deleteTasks = async ({ id }) => {
-  const command = new PutCommand({
+  const command = new DeleteCommand({
     TableName: "Tasks",
     Key: {
       id,

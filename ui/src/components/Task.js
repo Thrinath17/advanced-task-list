@@ -6,9 +6,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import classnames from "classnames";
 import axios from "axios";
 import { API_URL } from "../utils";
-import { fetchTasks } from "../../../api/task";
 
-export const Task = ({ task }) => {
+export const Task = ({ task, fetchTasks }) => {
   const { id, name, completed } = task;
   const [isComplete, setIsComplete] = useState(completed);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
