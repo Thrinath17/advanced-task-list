@@ -28,7 +28,7 @@ export const createTasks = async ({ name, completed }) => {
   const command = new PutCommand({
     TableName: "Tasks",
     Item: {
-      id: "",
+      id: uuid,
       name,
       completed,
     },
