@@ -9,7 +9,7 @@ import {
 import crypto from "crypto";
 
 const client = new DynamoDBClient({ region: "us-west-1" });
-const docClient = new DynamoDBDocumentClient.from(client);
+const docClient = DynamoDBDocumentClient.from(client);
 
 export const fetchTasks = async () => {
   const command = new ScanCommand({
@@ -19,7 +19,7 @@ export const fetchTasks = async () => {
   });
 
   const response = await docClient.send(command);
-  console.log("api/taskjs fetchtasks", response);
+
   return response;
 };
 
@@ -35,7 +35,7 @@ export const createTasks = async ({ name, completed }) => {
   });
 
   const response = await docClient.send(command);
-  console.log("api/taskjs createtasks", response);
+
   return response;
 };
 
@@ -61,7 +61,7 @@ export const updateTasks = async ({ id, name, completed }) => {
   return response;
 };
 
-export const deleteTasks = async ({ id }) => {
+export const deleteTasks = async (id) => {
   const command = new DeleteCommand({
     TableName: "Tasks",
     Key: {

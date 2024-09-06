@@ -16,12 +16,13 @@ export const AddTaskForm = ({ fetchTasks }) => {
       });
 
       await fetchTasks();
+
       setNewTask("");
     } catch (err) {
-      console.log("ui/addtaskform addnewTask err", err);
       console.log(err);
     }
   };
+
   return (
     <div>
       <Typography align="center" variant="h2" paddingTop={2} paddingBottom={2}>

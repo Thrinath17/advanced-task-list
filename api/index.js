@@ -1,7 +1,7 @@
 import express from "express";
 import serverless from "serverless-http";
 import cors from "cors";
-import { fetchTasks, createTasks, updateTasks, deleteTasks } from "./task";
+import { fetchTasks, createTasks, updateTasks, deleteTasks } from "./task.js";
 
 const app = express();
 const port = 3001;
@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 app.get("/task", async (req, res) => {
   try {
     const tasks = await fetchTasks();
-    console.log("api/indexjs get fetchtasks ", tasks);
+
     res.send(tasks.Items);
   } catch (err) {
     res.status(400).send(`Error fetching tasks: ${err}`);
@@ -28,13 +28,12 @@ app.get("/task", async (req, res) => {
 
 app.post("/task", async (req, res) => {
   try {
-    console.log("api/indexjs post", req, res);
     const task = req.body;
+
     const response = await createTasks(task);
-    console.log("api/indexjs post response", response);
+
     res.send(response);
   } catch (err) {
-    console.log("api/indexjs post response err", err);
     res.status(400).send(`Error creating tasks: ${err}`);
   }
 });
@@ -42,7 +41,9 @@ app.post("/task", async (req, res) => {
 app.put("/task", async (req, res) => {
   try {
     const task = req.body;
+
     const response = await updateTasks(task);
+
     res.send(response);
   } catch (err) {
     res.status(400).send(`Error updating tasks: ${err}`);
@@ -52,7 +53,10 @@ app.put("/task", async (req, res) => {
 app.delete("/task/:id", async (req, res) => {
   try {
     const { id } = req.params;
+
     const response = await deleteTasks(id);
+
+    res.send(response);
   } catch (err) {
     res.status(400).send(`Error deleting tasks: ${err}`);
   }
