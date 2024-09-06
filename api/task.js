@@ -19,7 +19,7 @@ export const fetchTasks = async () => {
   });
 
   const response = await docClient.send(command);
-
+  console.log("api/taskjs fetchtasks", response);
   return response;
 };
 
@@ -35,7 +35,7 @@ export const createTasks = async ({ name, completed }) => {
   });
 
   const response = await docClient.send(command);
-
+  console.log("api/taskjs createtasks", response);
   return response;
 };
 

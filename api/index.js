@@ -19,6 +19,7 @@ app.get("/", (req, res) => {
 app.get("/task", async (req, res) => {
   try {
     const tasks = await fetchTasks();
+    console.log("api/indexjs get fetchtasks ", tasks);
     res.send(tasks.Items);
   } catch (err) {
     res.status(400).send(`Error fetching tasks: ${err}`);
@@ -27,10 +28,13 @@ app.get("/task", async (req, res) => {
 
 app.post("/task", async (req, res) => {
   try {
+    console.log("api/indexjs post", req, res);
     const task = req.body;
     const response = await createTasks(task);
+    console.log("api/indexjs post response", response);
     res.send(response);
   } catch (err) {
+    console.log("api/indexjs post response err", err);
     res.status(400).send(`Error creating tasks: ${err}`);
   }
 });

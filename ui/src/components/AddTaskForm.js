@@ -18,6 +18,7 @@ export const AddTaskForm = ({ fetchTasks }) => {
       await fetchTasks();
       setNewTask("");
     } catch (err) {
+      console.log("ui/addtaskform addnewTask err", err);
       console.log(err);
     }
   };
@@ -39,7 +40,7 @@ export const AddTaskForm = ({ fetchTasks }) => {
           variant="outlined"
           onClick={addNewTask}
         >
-          <AddIcon></AddIcon>
+          <AddIcon />
         </Button>
       </div>
     </div>
